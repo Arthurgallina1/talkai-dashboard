@@ -3,6 +3,7 @@ import { Switch } from 'react-router-dom'
 import Route from './Route'
 
 import Dashboard from 'pages/Dashboard'
+import Geral from 'pages/Geral'
 // import SignUp from '../pages/SignUp';
 
 export default function Routes() {
@@ -10,6 +11,7 @@ export default function Routes() {
     <div>
       <Switch>
         <Route path="/" exact component={Dashboard} />
+        <Route path="/geral" exact component={Geral} />
         {/* <Route path="/register" exact component={SignUp} /> */}
         <Route path="/" component={() => <h1>404</h1>} />
       </Switch>

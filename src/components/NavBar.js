@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import clsx from 'clsx'
 import {
@@ -19,11 +20,14 @@ import {
   Menu,
   ChevronLeft,
   Notifications,
+  Visibility,
   People,
   BarChart,
   Layers,
   Dashboard
 } from '@material-ui/icons'
+import Logo from 'assets/logoPng.png'
+import history from 'services/history'
 
 const drawerWidth = 240
 
@@ -141,7 +145,7 @@ export default function NavBar() {
             Dashboard
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={1} color="secondary">
               <Notifications />
             </Badge>
           </IconButton>
@@ -155,6 +159,7 @@ export default function NavBar() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
+          <img src={Logo} />
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeft />
           </IconButton>
@@ -168,19 +173,29 @@ export default function NavBar() {
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem
+      button
+      onClick={() => {
+        history.push('/')
+      }}
+    >
       <ListItemIcon>
         <Dashboard />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button>
+    <ListItem
+      button
+      onClick={() => {
+        history.push('/geral')
+      }}
+    >
       <ListItemIcon>
-        <ShoppingCart />
+        <Visibility />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
+      <ListItemText primary="Visão geral" />
     </ListItem>
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
         <People />
       </ListItemIcon>
@@ -197,6 +212,6 @@ export const mainListItems = (
         <Layers />
       </ListItemIcon>
       <ListItemText primary="Integrations" />
-    </ListItem>
+    </ListItem> */}
   </div>
 )
