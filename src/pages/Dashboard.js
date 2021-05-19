@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import Title from 'components/commom/Title'
+import Chart2D from 'components/commom/Charts/2D'
 
 function Copyright() {
   return (
@@ -69,17 +70,6 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen
     })
   },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9)
-    }
-  },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -87,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto'
   },
   container: {
-    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
   },
   paper: {
@@ -112,6 +101,7 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3} justify="center">
             <Title>Dashboard mock</Title>
+            <Chart2D />
             {/* <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}></Paper>
             </Grid>
