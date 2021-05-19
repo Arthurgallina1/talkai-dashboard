@@ -1,19 +1,18 @@
 import React from 'react'
-import { ThemeProvider, Toolbar, AppBar, Typography } from '@material-ui/core/'
-import Orders from 'components/Orders'
-import { theme } from 'theme'
+import { Router } from 'react-router-dom'
+import { ThemeProvider } from '@material-ui/core/'
+import { theme } from 'styles/theme'
+import GlobalStyle from 'styles/global'
+import Routes from 'routes'
+import history from 'services/history'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <AppBar position="fixed">
-          <Toolbar variant="dense">
-            <Typography variant="h6">Multi-Step Form</Typography>
-          </Toolbar>
-        </AppBar>
-        <Orders />
-      </div>
+      <Router history={history}>
+        <GlobalStyle />
+        <Routes />
+      </Router>
     </ThemeProvider>
   )
 }
