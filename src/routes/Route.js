@@ -1,4 +1,5 @@
 import React from 'react'
+import AuthLayout from 'pages/__layouts/auth'
 /* eslint-disable */
 
 import { Route, Redirect } from 'react-router-dom'
@@ -18,16 +19,16 @@ export default function RouteWrapper({
   //         return <Redirect to="/dashboard" />
   //     }
 
-  //     const Layout = signed ? DefaultLayout : AuthLayout
+  const Layout = AuthLayout // signed ? DefaultLayout : AuthLayout
   //Apenas retorna o componente
   return (
     // Render: função que recebe todas propriedades da tela.
     <Route
       {...rest}
       render={(props) => (
-        // <Layout>
-        <Component {...props} />
-        // </Layout>
+        <Layout>
+          <Component {...props} />
+        </Layout>
       )}
     />
   )
