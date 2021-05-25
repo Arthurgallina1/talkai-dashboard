@@ -184,6 +184,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
+
     <ListItem
       button
       onClick={() => {
@@ -194,6 +195,17 @@ export const mainListItems = (
         <Visibility />
       </ListItemIcon>
       <ListItemText primary="Visão geral" />
+    </ListItem>
+    <ListItem
+      button
+      onClick={() => {
+        history.push('/operadores')
+      }}
+    >
+      <ListItemIcon>
+        <Visibility />
+      </ListItemIcon>
+      <ListItemText primary="Operadores" />
     </ListItem>
     {/* <ListItem button>
       <ListItemIcon>
