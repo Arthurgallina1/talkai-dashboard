@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Grid } from '@material-ui/core'
-import Card from 'components/commom/Card'
-import Avatar from 'components/commom/Avatar'
+import { Visibility } from '@material-ui/icons'
+import { Box, Grid } from '@material-ui/core'
 import Loading from 'components/commom/Loading'
+import Title from 'components/commom/Title'
+import OperatorCard from 'components/commom/OperatorCard'
+import Table from 'components/commom/Table'
 // import useFetch from 'hooks/useFetch'
 
 export default function Operador() {
@@ -38,30 +40,33 @@ export default function Operador() {
         setOperatorData(mock.data)
         // const response = await getOperatorsData()
         setLoading(false)
+        console.log(operatorData, mock.data)
       } catch (err) {
-        console.log(loading)
         setLoading(false)
       }
     }
-    console.debug('data', 12312)
-
     fetchData()
-  }, [])
+  }, [loading])
 
   return (
     <div>
       {loading ? (
         <Loading />
       ) : (
-        <>
-          <h1>Operador {operatorId} </h1>
-          <Card>
-            <Grid container direction="column" alignItems="center">
-              <Avatar />
-              {operatorData.name}
-            </Grid>
-          </Card>
-        </>
+        <Box p={3}>
+          <Title icon={<Visibility />}>Operador {operatorId}</Title>
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            style={{ marginTop: 15 }}
+          >
+            <OperatorCard operator={operatorId} />
+            <Box mt={5}>
+              <Table />
+            </Box>
+          </Grid>
+        </Box>
       )}
     </div>
   )

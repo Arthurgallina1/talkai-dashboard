@@ -1,10 +1,24 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import { Grid, Box, makeStyles } from '@material-ui/core'
+import Text from './Text'
 
-export default function Title(props) {
+const useStyles = makeStyles((theme) => ({
+  container: {
+    color: theme.palette.primary.main
+  }
+}))
+
+export default function Title({ children, icon = '' }) {
+  const classes = useStyles()
   return (
-    <Typography component="h2" variant="h6" color="primary" gutterBottom>
-      {props.children}
-    </Typography>
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      className={classes.container}
+    >
+      <Box mr={1}>{!!icon && icon}</Box>
+      <Text>{children}</Text>
+    </Grid>
   )
 }

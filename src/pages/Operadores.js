@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Grid } from '@material-ui/core'
-import Avatar from 'components/commom/Avatar'
+import { Grid, makeStyles } from '@material-ui/core'
 import Loading from 'components/commom/Loading'
-import Card from 'components/commom/Card'
 import { getOperatorsData } from 'services/api'
+import Title from 'components/commom/Title'
+import { Visibility } from '@material-ui/icons'
+import OperatorCard from 'components/commom/OperatorCard'
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(2)
+  },
+  grid: {
+    marginTop: 30,
+    display: 'grid',
+    gridGap: '30px',
+    maxWidth: 400
+    // [theme.breakpoints.down('md')]: {
+    //   gridTemplateColumns: '1fr'
+    // }
+  },
+  card: {
+    padding: theme.spacing(2)
+  }
+}))
 
 export default function Operadores() {
+  const classes = useStyles()
   const [operatorsData, setOperatorsData] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -14,9 +33,14 @@ export default function Operadores() {
     const fetchData = async () => {
       try {
         const response = await getOperatorsData()
-        setOperatorsData(response.data)
-        setLoading(false)
+        if (response.success) {
+          setOperatorsData(response.data)
+          setLoading(false)
+        } else {
+          setLoading(false)
+        }
       } catch (err) {
+        console.log(err)
         setLoading(false)
       }
     }
@@ -25,28 +49,23 @@ export default function Operadores() {
   }, [])
 
   return (
-    <div>
-      <h1>operadores</h1>
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      className={classes.container}
+    >
+      <Title icon={<Visibility />}>Operadores</Title>
       {loading ? (
         <Loading />
       ) : (
-        <Grid container>
+        <Grid container className={classes.grid}>
           {operatorsData.length > 0 &&
             operatorsData?.map((operator) => (
-              <Card key={operator.name}>
-                <Grid container direction="column" alignItems="center">
-                  <Avatar />
-                  {operator.name}
-                </Grid>
-                <Link to={`/operadores/${213}`}>
-                  <div>
-                    <h4>{operator.id}</h4>
-                  </div>
-                </Link>
-              </Card>
+              <OperatorCard key={operator.name} operator={operator} showLink />
             ))}
         </Grid>
       )}
-    </div>
+    </Grid>
   )
 }
