@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Title({ children, icon = '' }) {
+export default function Title({ children, icon = '', hasGoBack = false }) {
   const classes = useStyles()
   return (
     <Grid
@@ -19,10 +19,12 @@ export default function Title({ children, icon = '' }) {
       direction="column"
       className={classes.container}
     >
-      <Grid container alignItems="center">
-        <ArrowBackIos />
-        <Text variant="span">Go back</Text>
-      </Grid>
+      {hasGoBack && (
+        <Grid container alignItems="center">
+          <ArrowBackIos />
+          <Text variant="span">Go back</Text>
+        </Grid>
+      )}
       <Grid container justify="center" alignItems="center">
         <Box mr={1}>{!!icon && icon}</Box>
         <Text>{children}</Text>

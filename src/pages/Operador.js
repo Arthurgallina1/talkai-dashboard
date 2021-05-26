@@ -46,7 +46,7 @@ export default function Operador() {
       }
     }
     fetchData()
-  }, [loading])
+  }, [])
 
   return (
     <div>
@@ -54,7 +54,9 @@ export default function Operador() {
         <Loading />
       ) : (
         <Box p={3}>
-          <Title icon={<Visibility />}>Operador {operatorId}</Title>
+          <Title icon={<Visibility />} hasGoBack>
+            Operador {operatorId}
+          </Title>
           <Grid
             container
             direction="column"
@@ -63,6 +65,7 @@ export default function Operador() {
           >
             <OperatorCard operator={operatorId} />
             <Box mt={5}>
+              <Title variant={'span'}>Conversas</Title>
               <Table />
             </Box>
           </Grid>
