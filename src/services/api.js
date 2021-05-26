@@ -25,3 +25,12 @@ export const getOperatorsData = async () => {
     return { success: false }
   }
 }
+
+export const getMessagesByChatId = async (chatId) => {
+  try {
+    const response = await api.get(`/messages/${chatId}`)
+    return { data: response.data.data, success: true }
+  } catch (err) {
+    throw new Error('Error on fetching messages')
+  }
+}

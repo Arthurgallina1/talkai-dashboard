@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Box, makeStyles } from '@material-ui/core'
 import Text from './Text'
+import { ArrowBackIos } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -13,12 +14,19 @@ export default function Title({ children, icon = '' }) {
   return (
     <Grid
       container
-      justify="center"
-      alignItems="center"
+      // justify="space-between"
+      // alignItems="center"
+      direction="column"
       className={classes.container}
     >
-      <Box mr={1}>{!!icon && icon}</Box>
-      <Text>{children}</Text>
+      <Grid container alignItems="center">
+        <ArrowBackIos />
+        <Text variant="span">Go back</Text>
+      </Grid>
+      <Grid container justify="center" alignItems="center">
+        <Box mr={1}>{!!icon && icon}</Box>
+        <Text>{children}</Text>
+      </Grid>
     </Grid>
   )
 }

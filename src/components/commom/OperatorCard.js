@@ -21,7 +21,8 @@ export default function OperatorCard({ operator, showLink = false }) {
         >
           <Link to={`/operadores/${213}`}>
             <Grid container justify="center" alignItems="center">
-              <h4>{operator.id}</h4>
+              {/* <h4>{operator.id}</h4> */}
+              <h5>Ver mais</h5>
               <ArrowForwardIos color="primary" fontSize="small" />
             </Grid>
           </Link>
