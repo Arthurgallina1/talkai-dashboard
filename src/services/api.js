@@ -20,7 +20,7 @@ export const getVisaoGeralData = async () => {
 export const getOperatorsData = async () => {
   try {
     const response = await api.get('/operators')
-    return { data: response.data, success: true }
+    return { data: response.data.data, success: true }
   } catch (err) {
     return { success: false }
   }

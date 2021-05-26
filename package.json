@@ -10,7 +10,6 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
-    "cors": "^2.8.5",
     "fusioncharts": "^3.17.0",
     "history": "4.10.1",
     "react": "^17.0.2",
