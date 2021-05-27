@@ -30,7 +30,6 @@ export default function AlertDialogSlide({ id, button }) {
         console.error(err)
       }
     }
-    console.log('carregado no uE', id)
     if (open) {
       fetchData()
     }

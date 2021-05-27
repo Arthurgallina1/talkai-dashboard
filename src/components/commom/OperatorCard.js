@@ -19,7 +19,7 @@ export default function OperatorCard({ operator, showLink = false }) {
           alignItems="center"
           style={{ marginTop: 15 }}
         >
-          <Link to={`/operadores/${213}`}>
+          <Link to={`/operadores/${operator.id}`}>
             <Grid container justify="center" alignItems="center">
               {/* <h4>{operator.id}</h4> */}
               <h5>Ver mais</h5>

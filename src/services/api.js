@@ -34,3 +34,12 @@ export const getMessagesByChatId = async (chatId) => {
     throw new Error('Error on fetching messages')
   }
 }
+
+export const getOperatorOverview = async (operatorId) => {
+  try {
+    const response = await api.get(`/operator/${operatorId}`)
+    return { data: response.data.data, success: true }
+  } catch (err) {
+    throw new Error('Error on fetching operatorOverview')
+  }
+}

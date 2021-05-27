@@ -30,27 +30,27 @@ const StyledTableRow = withStyles((theme) => ({
   }
 }))(TableRow)
 
-function createData(id, clientPhone, label, createdAt) {
-  return { id, clientPhone, label, createdAt }
-}
+// function createData(id, clientPhone, label, createdAt) {
+//   return { id, clientPhone, label, createdAt }
+// }
 
-const Iniciado = () => <div style={{ background: 'green' }}>Iniciado</div>
+// const Iniciado = () => <div style={{ background: 'green' }}>Iniciado</div>
 
-const getLabel = (label) => {
-  const labelObject = {
-    iniciado: <Iniciado />,
-    pausado: 'Pausado'
-  }
-  return labelObject[label]
-}
+// const getLabel = (label) => {
+//   const labelObject = {
+//     iniciado: <Iniciado />,
+//     pausado: 'Pausado'
+//   }
+//   return labelObject[label]
+// }
 
-const rows = [
-  createData(2, '(49)12345-2322', getLabel('iniciado'), '2021-05-26'),
-  createData(10, '(49)12345-2322', 'Iniciado', '2021-05-26'),
-  createData(11, '(49)12345-2322', 'Iniciado', '2021-05-26'),
-  createData(12, '(49)12345-2322', 'Iniciado', '2021-05-26'),
-  createData(13, '(49)12345-2322', 'pausado', '2021-05-26')
-]
+// const rows = [
+//   createData(2, '(49)12345-2322', getLabel('iniciado'), '2021-05-26'),
+//   createData(10, '(49)12345-2322', 'Iniciado', '2021-05-26'),
+//   createData(11, '(49)12345-2322', 'Iniciado', '2021-05-26'),
+//   createData(12, '(49)12345-2322', 'Iniciado', '2021-05-26'),
+//   createData(13, '(49)12345-2322', 'pausado', '2021-05-26')
+// ]
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -61,7 +61,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function CustomizedTables() {
+export default function CustomizedTables({
+  tableDataKeys,
+  tableHeadKeys,
+  tableData
+}) {
   const classes = useStyles()
 
   return (
@@ -69,28 +73,34 @@ export default function CustomizedTables() {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="right">Id</StyledTableCell>
-            <StyledTableCell align="right">Número Telefone</StyledTableCell>
-            <StyledTableCell align="right">Label</StyledTableCell>
-            <StyledTableCell align="right">Criado em</StyledTableCell>
-            <StyledTableCell align="right">Ver conversa</StyledTableCell>
+            {tableHeadKeys.length > 0 &&
+              tableHeadKeys.map((tableRow) => {
+                return (
+                  <StyledTableCell align="right" key={tableRow}>
+                    {tableRow}
+                  </StyledTableCell>
+                )
+              })}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.id}>
-              <StyledTableCell align="right">{row.id}</StyledTableCell>
-              <StyledTableCell align="right">{row.clientPhone}</StyledTableCell>
-              <StyledTableCell align="right">{row.label}</StyledTableCell>
-              <StyledTableCell align="right">{row.createdAt}</StyledTableCell>
-              <StyledTableCell align="center">
-                <Dialog
-                  id={row.id}
-                  button={<ArrowForwardIos color="primary" />}
-                />
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {tableData.map((tableRow) => {
+            return (
+              <StyledTableRow key={tableRow.id}>
+                {tableDataKeys.map((key) => (
+                  <StyledTableCell align="right" key={tableRow[key]}>
+                    {tableRow[key]}
+                  </StyledTableCell>
+                ))}
+                <StyledTableCell align="center">
+                  <Dialog
+                    id={tableRow.id}
+                    button={<ArrowForwardIos color="primary" />}
+                  />
+                </StyledTableCell>
+              </StyledTableRow>
+            )
+          })}
         </TableBody>
       </Table>
     </TableContainer>

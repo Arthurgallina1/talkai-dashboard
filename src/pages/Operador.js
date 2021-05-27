@@ -2,45 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Visibility } from '@material-ui/icons'
 import { Box, Grid } from '@material-ui/core'
+import OperatorStatus from 'components/operator/OperatorStatus'
 import Loading from 'components/commom/Loading'
 import Title from 'components/commom/Title'
 import OperatorCard from 'components/commom/OperatorCard'
-import Table from 'components/commom/Table'
+import OperatorChats from 'components/operator/OperatorChats'
+import { getOperatorOverview } from 'services/api'
 // import useFetch from 'hooks/useFetch'
 
 export default function Operador() {
   const { operatorId } = useParams()
-  const [operatorData, setOperatorData] = useState([])
+  const [operatorData, setOperatorData] = useState({ status: [], chats: [] })
   const [loading, setLoading] = useState(false)
-  const mock = {
-    success: true,
-    data: [
-      {
-        id: 9,
-        operatorId: 1,
-        clientPhone: '12345',
-        label: 'iniciado',
-        createdAt: '2021-05-26T01:09:46.557Z',
-        updatedAt: '2021-05-26T01:09:46.557Z'
-      },
-      {
-        id: 10,
-        operatorId: 1,
-        clientPhone: '12345',
-        label: 'iniciado',
-        createdAt: '2021-05-26T01:10:45.639Z',
-        updatedAt: '2021-05-26T01:10:45.639Z'
-      }
-    ]
-  }
   //   const [response, loading] = useFetch('/123')
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setOperatorData(mock.data)
-        // const response = await getOperatorsData()
+        const response = await getOperatorOverview(operatorId)
         setLoading(false)
-        console.log(operatorData, mock.data)
+        setOperatorData(response.data)
       } catch (err) {
         setLoading(false)
       }
@@ -64,10 +44,8 @@ export default function Operador() {
             style={{ marginTop: 15 }}
           >
             <OperatorCard operator={operatorId} />
-            <Box mt={5}>
-              <Title variant={'span'}>Conversas</Title>
-              <Table />
-            </Box>
+            <OperatorStatus operatorStatus={operatorData?.status} />
+            <OperatorChats operatorChats={operatorData?.chats} />
           </Grid>
         </Box>
       )}
