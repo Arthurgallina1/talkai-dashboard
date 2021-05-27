@@ -10,19 +10,12 @@ export default function OperatorStatus({ operatorChats }) {
       <Table
         tableHeadKeys={[
           'ID',
-          'Operator',
           'Telefone Cliente',
           'Status',
           'Criado em',
           'Conversa'
         ]}
-        tableDataKeys={[
-          'id',
-          'operatorId',
-          'clientPhone',
-          'label',
-          'createdAt'
-        ]}
+        tableDataKeys={['id', 'clientPhone', 'label', 'createdAt']}
         tableData={operatorChats}
         hasActionItem
       />

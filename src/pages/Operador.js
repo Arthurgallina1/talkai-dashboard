@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Visibility } from '@material-ui/icons'
+// import { Person } from '@material-ui/icons'
 import { Box, Grid } from '@material-ui/core'
 import OperatorStatus from 'components/operator/OperatorStatus'
 import Loading from 'components/commom/Loading'
@@ -34,17 +34,18 @@ export default function Operador() {
         <Loading />
       ) : (
         <Box p={3}>
-          <Title icon={<Visibility />} hasGoBack>
-            Operador {operatorId}
-          </Title>
+          <Title hasGoBack>{/* Operador {operatorId} */}</Title>
           <Grid
             container
             direction="column"
             alignItems="center"
             style={{ marginTop: 15 }}
           >
-            <OperatorCard operator={operatorId} />
-            <OperatorStatus operatorStatus={operatorData?.status} />
+            <OperatorCard operator={operatorData} />
+            <OperatorStatus
+              operatorStatus={operatorData?.status}
+              operatorChats={operatorData?.chats}
+            />
             <OperatorChats operatorChats={operatorData?.chats} />
           </Grid>
         </Box>

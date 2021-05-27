@@ -4,13 +4,15 @@ import { Grid } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import Avatar from 'components/commom/Avatar'
 import Card from 'components/commom/Card'
+import { formatDate } from 'utils/formatters'
 
 export default function OperatorCard({ operator, showLink = false }) {
   return (
     <Card>
       <Grid container direction="column" alignItems="center">
         <Avatar />
-        {operator.name}
+        <p>{operator.name}</p>
+        Desde de: {formatDate(operator.createdAt)}
       </Grid>
       {showLink && (
         <Grid

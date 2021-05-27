@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function OperatorStatus({ operatorStatus }) {
+export default function OperatorStatus({ operatorStatus = [] }) {
   const classes = useStyles()
 
   const formatStatName = (stat) => {
@@ -64,16 +64,19 @@ export default function OperatorStatus({ operatorStatus }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {operatorStatus.map((stats) => {
-              return (
-                <TableRow key={stats.chat_dir}>
-                  <StyledTableCell align="right">
-                    {formatStatName(stats.chat_dir)}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{stats.count}</StyledTableCell>
-                </TableRow>
-              )
-            })}
+            {operatorStatus.length &&
+              operatorStatus.map((stats) => {
+                return (
+                  <TableRow key={stats.chat_dir}>
+                    <StyledTableCell align="right">
+                      {formatStatName(stats.chat_dir)}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      {stats.count}
+                    </StyledTableCell>
+                  </TableRow>
+                )
+              })}
           </TableBody>
         </Table>
       </TableContainer>

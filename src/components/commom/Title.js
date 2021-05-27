@@ -1,7 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { Grid, Box, makeStyles } from '@material-ui/core'
-import Text from './Text'
 import { ArrowBackIos } from '@material-ui/icons'
+import Text from './Text'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -9,8 +10,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Title({ children, icon = '', hasGoBack = false }) {
+export default function Title({ children, icon, hasGoBack = false }) {
   const classes = useStyles()
+  const history = useHistory()
   return (
     <Grid
       container
@@ -20,9 +22,16 @@ export default function Title({ children, icon = '', hasGoBack = false }) {
       className={classes.container}
     >
       {hasGoBack && (
-        <Grid container alignItems="center">
+        <Grid
+          container
+          alignItems="center"
+          onClick={() => {
+            history.goBack()
+          }}
+          style={{ cursor: 'pointer' }}
+        >
           <ArrowBackIos />
-          <Text variant="span">Go back</Text>
+          <Text variant="span">Voltar</Text>
         </Grid>
       )}
       <Grid container justify="center" alignItems="center">

@@ -1,4 +1,5 @@
 import React from 'react'
+/* eslint-disable */
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 import { ArrowForwardIos } from '@material-ui/icons'
 import {
@@ -11,6 +12,7 @@ import {
   Paper
 } from '@material-ui/core'
 import Dialog from './Dialog'
+import { formatDate } from 'utils/formatters'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -34,15 +36,18 @@ const StyledTableRow = withStyles((theme) => ({
 //   return { id, clientPhone, label, createdAt }
 // }
 
-// const Iniciado = () => <div style={{ background: 'green' }}>Iniciado</div>
+const Iniciado = () => <div style={{ background: 'green' }}>Iniciado</div>
+const Pausado = () => <div style={{ background: 'red' }}>Pausado</div>
 
-// const getLabel = (label) => {
-//   const labelObject = {
-//     iniciado: <Iniciado />,
-//     pausado: 'Pausado'
-//   }
-//   return labelObject[label]
-// }
+const formatStatusLabel = (label) => {
+  const labelObject = {
+    iniciado: <Iniciado />,
+    parado: <Pausado />
+  }
+  if (!labelObject[label]) return label
+
+  return labelObject[label]
+}
 
 // const rows = [
 //   createData(2, '(49)12345-2322', getLabel('iniciado'), '2021-05-26'),
@@ -77,7 +82,51 @@ export default function CustomizedTables({
             {tableHeadKeys.length > 0 &&
               tableHeadKeys.map((tableRow) => {
                 return (
-                  <StyledTableCell align="right" key={tableRow}>
+                  <StyledTableCell align="center" key={tableRow}>
+                    {tableRow}
+                  </StyledTableCell>
+                )
+              })}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tableData.map((stats) => {
+            return (
+              <TableRow key={stats.id}>
+                <StyledTableCell align="center">{stats.id}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {stats.clientPhone}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {formatStatusLabel(stats.label)}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {formatDate(stats.createdAt)}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <Dialog
+                    id={stats.id}
+                    button={<ArrowForwardIos color="primary" />}
+                  />
+                </StyledTableCell>
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
+}
+
+{
+  /* <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            {tableHeadKeys.length > 0 &&
+              tableHeadKeys.map((tableRow) => {
+                return (
+                  <StyledTableCell align="center" key={tableRow}>
                     {tableRow}
                   </StyledTableCell>
                 )
@@ -106,6 +155,5 @@ export default function CustomizedTables({
           })}
         </TableBody>
       </Table>
-    </TableContainer>
-  )
+    </TableContainer> */
 }

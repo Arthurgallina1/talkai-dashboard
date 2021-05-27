@@ -37,7 +37,16 @@ export const getMessagesByChatId = async (chatId) => {
 
 export const getOperatorOverview = async (operatorId) => {
   try {
-    const response = await api.get(`/operator/${operatorId}`)
+    const response = await api.get(`overview/operator/${operatorId}`)
+    return { data: response.data.data, success: true }
+  } catch (err) {
+    throw new Error('Error on fetching operatorOverview')
+  }
+}
+
+export const getGeneralOverview = async () => {
+  try {
+    const response = await api.get(`/overview/general`)
     return { data: response.data.data, success: true }
   } catch (err) {
     throw new Error('Error on fetching operatorOverview')

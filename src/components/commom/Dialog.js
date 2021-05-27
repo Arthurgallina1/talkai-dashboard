@@ -24,8 +24,6 @@ export default function AlertDialogSlide({ id, button }) {
       try {
         const response = await getMessagesByChatId(id)
         setMessagesData(response.data)
-        //   setLoading(false)
-        console.log(messagesData)
       } catch (err) {
         console.error(err)
       }
