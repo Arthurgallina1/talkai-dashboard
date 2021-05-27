@@ -64,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomizedTables({
   tableDataKeys,
   tableHeadKeys,
-  tableData
+  tableData,
+  hasActionItem = false
 }) {
   const classes = useStyles()
 
@@ -92,12 +93,14 @@ export default function CustomizedTables({
                     {tableRow[key]}
                   </StyledTableCell>
                 ))}
-                <StyledTableCell align="center">
-                  <Dialog
-                    id={tableRow.id}
-                    button={<ArrowForwardIos color="primary" />}
-                  />
-                </StyledTableCell>
+                {hasActionItem && (
+                  <StyledTableCell align="center">
+                    <Dialog
+                      id={tableRow.id}
+                      button={<ArrowForwardIos color="primary" />}
+                    />
+                  </StyledTableCell>
+                )}
               </StyledTableRow>
             )
           })}

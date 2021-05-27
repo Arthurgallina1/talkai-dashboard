@@ -4,11 +4,6 @@ import Title from 'components/commom/Title'
 import Table from 'components/commom/Table'
 
 export default function OperatorStatus({ operatorChats }) {
-  console.log('operatorChats', operatorChats)
-
-  //   const formatOperatorsChatToTableData = () => {
-
-  //   }
   return (
     <Box mt={5}>
       <Title variant={'span'}>Conversas</Title>
@@ -29,6 +24,7 @@ export default function OperatorStatus({ operatorChats }) {
           'createdAt'
         ]}
         tableData={operatorChats}
+        hasActionItem
       />
     </Box>
   )
