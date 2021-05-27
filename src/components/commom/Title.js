@@ -5,12 +5,12 @@ import { ArrowBackIos } from '@material-ui/icons'
 import Text from './Text'
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  icon: {
     color: theme.palette.primary.main
   }
 }))
 
-export default function Title({ children, icon, hasGoBack = false }) {
+export default function Title({ children, color, icon, hasGoBack = false }) {
   const classes = useStyles()
   const history = useHistory()
   return (
@@ -30,13 +30,15 @@ export default function Title({ children, icon, hasGoBack = false }) {
           }}
           style={{ cursor: 'pointer' }}
         >
-          <ArrowBackIos />
-          <Text variant="span">Voltar</Text>
+          <ArrowBackIos className={classes.icon} />
+          <Text variant="span" color="primary">
+            <strong>Voltar</strong>
+          </Text>
         </Grid>
       )}
       <Grid container justify="center" alignItems="center">
         <Box mr={1}>{!!icon && icon}</Box>
-        <Text>{children}</Text>
+        <Text color={color}>{children}</Text>
       </Grid>
     </Grid>
   )

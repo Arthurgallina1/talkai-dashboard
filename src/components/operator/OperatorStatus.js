@@ -45,12 +45,16 @@ export default function OperatorStatus({ operatorStatus }) {
 
   return (
     <Box mt={5}>
-      <Title variant={'span'}>Stats</Title>
+      <Box mb={2}>
+        <Title variant={'span'} color="black">
+          <strong>Estatísticas do Operador</strong>
+        </Title>
+      </Box>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">Stat</StyledTableCell>
+              <StyledTableCell align="center">Estatística</StyledTableCell>
               <StyledTableCell align="center">Contagem</StyledTableCell>
             </TableRow>
           </TableHead>

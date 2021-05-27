@@ -3,7 +3,7 @@ import { Grid, makeStyles } from '@material-ui/core'
 import Loading from 'components/commom/Loading'
 import { getOperatorsData } from 'services/api'
 import Title from 'components/commom/Title'
-import { Visibility } from '@material-ui/icons'
+import { Person } from '@material-ui/icons'
 import OperatorCard from 'components/commom/OperatorCard'
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +55,9 @@ export default function Operadores() {
       alignItems="center"
       className={classes.container}
     >
-      <Title icon={<Visibility />}>Operadores</Title>
+      <Title color="black" icon={<Person color="primary" />}>
+        Operadores
+      </Title>
       {loading ? (
         <Loading />
       ) : (

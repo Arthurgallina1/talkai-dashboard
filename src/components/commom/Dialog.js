@@ -5,7 +5,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Slide
+  Slide,
+  makeStyles
 } from '@material-ui/core'
 import { useEffect } from 'react'
 import { getMessagesByChatId } from 'services/api'
@@ -15,7 +16,15 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
+const useStyles = makeStyles((theme) => ({
+  titleContainer: {
+    background: theme.palette.primary.main,
+    color: 'white'
+  }
+}))
+
 export default function AlertDialogSlide({ id, button }) {
+  const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [messagesData, setMessagesData] = useState([])
 
@@ -54,7 +63,12 @@ export default function AlertDialogSlide({ id, button }) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">Conversa {id}</DialogTitle>
+        <DialogTitle
+          className={classes.titleContainer}
+          id="alert-dialog-slide-title"
+        >
+          Conversa {id}
+        </DialogTitle>
         <DialogContent style={{ background: '#EBE8E1', padding: 15 }}>
           {messagesData?.map((message) => {
             return <MessageBox message={message} key={message.chat_uid} />

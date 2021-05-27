@@ -32,12 +32,38 @@ const StyledTableRow = withStyles((theme) => ({
   }
 }))(TableRow)
 
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 450,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 350
+    }
+  },
+  iniciado: {
+    padding: 10,
+    borderRadius: 18,
+    color: 'white',
+    background: theme.palette.success.main
+  },
+  pausado: {
+    padding: 10,
+    borderRadius: 18,
+    color: 'white',
+    background: theme.palette.error.main
+  }
+}))
 // function createData(id, clientPhone, label, createdAt) {
 //   return { id, clientPhone, label, createdAt }
 // }
 
-const Iniciado = () => <div style={{ background: 'green' }}>Iniciado</div>
-const Pausado = () => <div style={{ background: 'red' }}>Pausado</div>
+const Iniciado = () => {
+  const classes = useStyles()
+  return <div className={classes.iniciado}>Em andamento</div>
+}
+const Pausado = () => {
+  const classes = useStyles()
+  return <div className={classes.pausado}>Pausado</div>
+}
 
 const formatStatusLabel = (label) => {
   const labelObject = {
@@ -56,15 +82,6 @@ const formatStatusLabel = (label) => {
 //   createData(12, '(49)12345-2322', 'Iniciado', '2021-05-26'),
 //   createData(13, '(49)12345-2322', 'pausado', '2021-05-26')
 // ]
-
-const useStyles = makeStyles((theme) => ({
-  table: {
-    minWidth: 450,
-    [theme.breakpoints.down('sm')]: {
-      minWidth: 350
-    }
-  }
-}))
 
 export default function CustomizedTables({
   tableDataKeys,

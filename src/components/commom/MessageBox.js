@@ -24,7 +24,7 @@ const MessageBody = styled.div`
   display: flex;
   flex-direction: column;
   background: ${(props) => (props?.receiving ? 'white' : '#dcf8c7')};
-  padding: 8px 5px;
+  padding: 8px;
   border-radius: 5px;
 
   small {
@@ -83,8 +83,6 @@ export default function MessageBox({ message }) {
       ) : (
         <ReceivedMessage message={message} />
       )}
-
-      {/* <span>{message.chat_body}</span> */}
     </Grid>
   )
 }
