@@ -55,7 +55,7 @@ export default function AlertDialogSlide({ id, button }) {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle id="alert-dialog-slide-title">Conversa {id}</DialogTitle>
-        <DialogContent>
+        <DialogContent style={{ background: '#EBE8E1', padding: 15 }}>
           {messagesData?.map((message) => {
             return <MessageBox message={message} key={message.chat_uid} />
           })}

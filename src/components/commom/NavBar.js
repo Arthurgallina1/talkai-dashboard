@@ -24,7 +24,8 @@ import {
   People,
   BarChart,
   Layers,
-  Dashboard
+  Dashboard,
+  Group
 } from '@material-ui/icons'
 import Logo from 'assets/logoPng.png'
 import history from 'services/history'
@@ -203,7 +204,7 @@ export const mainListItems = (
       }}
     >
       <ListItemIcon>
-        <Visibility />
+        <Group />
       </ListItemIcon>
       <ListItemText primary="Operadores" />
     </ListItem>

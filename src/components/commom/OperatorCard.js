@@ -12,7 +12,8 @@ export default function OperatorCard({ operator, showLink = false }) {
       <Grid container direction="column" alignItems="center">
         <Avatar />
         <p>{operator.name}</p>
-        Desde de: {formatDate(operator.createdAt)}
+        <p>Desde de: {formatDate(operator.createdAt)}</p>
+        <p>Operação: TBD</p>
       </Grid>
       {showLink && (
         <Grid
@@ -23,7 +24,6 @@ export default function OperatorCard({ operator, showLink = false }) {
         >
           <Link to={`/operadores/${operator.id}`}>
             <Grid container justify="center" alignItems="center">
-              {/* <h4>{operator.id}</h4> */}
               <h5>Ver mais</h5>
               <ArrowForwardIos color="primary" fontSize="small" />
             </Grid>

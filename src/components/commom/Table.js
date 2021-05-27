@@ -1,7 +1,7 @@
 import React from 'react'
 /* eslint-disable */
 import { withStyles, makeStyles } from '@material-ui/core/styles'
-import { ArrowForwardIos } from '@material-ui/icons'
+import { ArrowDownward, ArrowForwardIos } from '@material-ui/icons'
 import {
   Table,
   TableBody,
@@ -108,6 +108,9 @@ export default function CustomizedTables({
                     id={stats.id}
                     button={<ArrowForwardIos color="primary" />}
                   />
+                </StyledTableCell>
+                <StyledTableCell align="center" style={{ cursor: 'pointer' }}>
+                  <ArrowDownward color="primary" />
                 </StyledTableCell>
               </TableRow>
             )

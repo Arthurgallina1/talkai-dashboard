@@ -31,48 +31,39 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function OperatorStatus({ operatorStatus = [] }) {
+export default function OperatorStatus({ operatorStatus }) {
   const classes = useStyles()
 
-  const formatStatName = (stat) => {
-    switch (stat) {
-      case 'o':
-        return 'Mensangens Enviadas'
-      case 'i':
-        return 'Mensangens Recebidas'
-    }
-  }
+  // const formatStatName = (stat) => {
+  //   switch (stat) {
+  //     case 'o':
+  //       return 'Mensangens Enviadas'
+  //     case 'i':
+  //       return 'Mensangens Recebidas'
+  //   }
+  // }
 
   return (
     <Box mt={5}>
       <Title variant={'span'}>Stats</Title>
-      {/* <Table
-        tableHeadKeys={['Direção', 'Contagem']}
-        tableDataKeys={['chat_dir', 'count']}
-        tableData={operatorStatus}
-      /> */}
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="right" key={123}>
-                Stat
-              </StyledTableCell>
-              <StyledTableCell align="right" key={123}>
-                Contagem
-              </StyledTableCell>
+              <StyledTableCell align="center">Stat</StyledTableCell>
+              <StyledTableCell align="center">Contagem</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {operatorStatus.length &&
-              operatorStatus.map((stats) => {
+              operatorStatus.map((stat) => {
                 return (
-                  <TableRow key={stats.chat_dir}>
-                    <StyledTableCell align="right">
-                      {formatStatName(stats.chat_dir)}
+                  <TableRow key={stat.chat_dir}>
+                    <StyledTableCell align="center">
+                      {stat.label}
                     </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {stats.count}
+                    <StyledTableCell align="center">
+                      {stat.value}
                     </StyledTableCell>
                   </TableRow>
                 )

@@ -12,8 +12,8 @@ import { getOperatorOverview } from 'services/api'
 
 export default function Operador() {
   const { operatorId } = useParams()
-  const [operatorData, setOperatorData] = useState({ status: [], chats: [] })
-  const [loading, setLoading] = useState(false)
+  const [operatorData, setOperatorData] = useState({ stats: [], chats: [] })
+  const [loading, setLoading] = useState(true)
   //   const [response, loading] = useFetch('/123')
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +43,7 @@ export default function Operador() {
           >
             <OperatorCard operator={operatorData} />
             <OperatorStatus
-              operatorStatus={operatorData?.status}
+              operatorStatus={operatorData?.stats}
               operatorChats={operatorData?.chats}
             />
             <OperatorChats operatorChats={operatorData?.chats} />

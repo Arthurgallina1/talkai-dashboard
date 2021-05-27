@@ -13,7 +13,8 @@ export default function OperatorStatus({ operatorChats }) {
           'Telefone Cliente',
           'Status',
           'Criado em',
-          'Conversa'
+          'Conversa',
+          'Download'
         ]}
         tableDataKeys={['id', 'clientPhone', 'label', 'createdAt']}
         tableData={operatorChats}
