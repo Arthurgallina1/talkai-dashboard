@@ -10,10 +10,10 @@ export default api
 
 export const getVisaoGeralData = async () => {
   try {
-    const response = await api.get('/stats/general')
-    return { data: response.data, success: true }
+    const response = await api.get('/overview/general')
+    return { data: response.data.data, success: true }
   } catch (err) {
-    return { success: false }
+    throw new Error('Error on fetching general data')
   }
 }
 

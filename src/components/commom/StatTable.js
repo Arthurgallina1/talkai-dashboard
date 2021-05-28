@@ -31,23 +31,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function OperatorStatus({ operatorStatus }) {
+export default function StatTable({ title, statData }) {
   const classes = useStyles()
 
-  // const formatStatName = (stat) => {
-  //   switch (stat) {
-  //     case 'o':
-  //       return 'Mensangens Enviadas'
-  //     case 'i':
-  //       return 'Mensangens Recebidas'
-  //   }
-  // }
-
+  console.log('statData', statData)
   return (
     <Box mt={5}>
       <Box mb={2}>
         <Title variant={'span'} color="black">
-          <strong>Estatísticas do Operador</strong>
+          <strong>{title}</strong>
         </Title>
       </Box>
       <TableContainer component={Paper}>
@@ -59,10 +51,10 @@ export default function OperatorStatus({ operatorStatus }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {operatorStatus.length &&
-              operatorStatus.map((stat) => {
+            {statData?.length &&
+              statData.map((stat) => {
                 return (
-                  <TableRow key={stat.chat_dir}>
+                  <TableRow key={stat.label}>
                     <StyledTableCell align="center">
                       {stat.label}
                     </StyledTableCell>

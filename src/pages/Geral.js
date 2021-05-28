@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Grid, Paper } from '@material-ui/core'
-import Tabela from 'components/VisaoGeral/Tabela'
+import { Container, Grid } from '@material-ui/core'
+// import Tabela from 'components/VisaoGeral/Tabela'
 import Loading from 'components/commom/Loading'
 import { getVisaoGeralData } from 'services/api'
-import OperatorChatTable from 'components/operator/OperatorChatTable'
+import StatTable from 'components/commom/StatTable'
 
 export default function Geral() {
-  const [generalTableData, setGeneralTableData] = useState({})
+  const [generalTableData, setGeneralTableData] = useState({ stats: [] })
   const [loading, setLoading] = useState(false)
   // const [error, setError] = useState('')
 
@@ -14,8 +14,8 @@ export default function Geral() {
     const fetchData = async () => {
       try {
         const response = await getVisaoGeralData()
-        console.debug('data', response)
-        setGeneralTableData(response)
+        console.debug('data', response.data)
+        setGeneralTableData(response.data)
         setLoading(false)
       } catch (err) {
         setLoading(false)
@@ -30,15 +30,11 @@ export default function Geral() {
           <Loading />
         ) : (
           <>
-            <Grid item xs={12} lg={6}>
-              <Paper>
-                <OperatorChatTable />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} lg={6}>
-              <Paper>
-                <Tabela data={generalTableData} />
-              </Paper>
+            <Grid item xs={12} lg={12}>
+              <StatTable
+                statData={generalTableData.stats}
+                title="Visão Geral"
+              />
             </Grid>
           </>
         )}

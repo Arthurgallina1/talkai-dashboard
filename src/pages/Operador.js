@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 // import { Person } from '@material-ui/icons'
 import { Box, Grid } from '@material-ui/core'
-import OperatorStatus from 'components/operator/OperatorStatus'
+import StatTable from 'components/commom/StatTable'
 import Loading from 'components/commom/Loading'
 import Title from 'components/commom/Title'
 import OperatorCard from 'components/commom/OperatorCard'
-import OperatorChats from 'components/operator/OperatorChats'
+import OperatorChats from 'components/operator/OperatorChatsTable'
 import { getOperatorOverview } from 'services/api'
 // import useFetch from 'hooks/useFetch'
 
@@ -19,8 +19,9 @@ export default function Operador() {
     const fetchData = async () => {
       try {
         const response = await getOperatorOverview(operatorId)
-        setLoading(false)
+        console.log(response)
         setOperatorData(response.data)
+        setLoading(false)
       } catch (err) {
         setLoading(false)
       }
@@ -42,9 +43,9 @@ export default function Operador() {
             style={{ marginTop: 15 }}
           >
             <OperatorCard operator={operatorData} />
-            <OperatorStatus
-              operatorStatus={operatorData?.stats}
-              operatorChats={operatorData?.chats}
+            <StatTable
+              title="Visão por operador"
+              statData={operatorData.stats}
             />
             <OperatorChats operatorChats={operatorData?.chats} />
           </Grid>

@@ -85,11 +85,8 @@ export default function AlertDialogSlide({ id, button }) {
           </DialogContentText> */}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Agree
+          <Button variant="contained" onClick={handleClose} color="primary">
+            Fechar
           </Button>
         </DialogActions>
       </Dialog>
