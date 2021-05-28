@@ -3,6 +3,7 @@ import { Container, Grid, Paper } from '@material-ui/core'
 import Tabela from 'components/VisaoGeral/Tabela'
 import Loading from 'components/commom/Loading'
 import { getVisaoGeralData } from 'services/api'
+import OperatorChatTable from 'components/operator/OperatorChatTable'
 
 export default function Geral() {
   const [generalTableData, setGeneralTableData] = useState({})
@@ -28,11 +29,18 @@ export default function Geral() {
         {loading ? (
           <Loading />
         ) : (
-          <Grid item xs={12}>
-            <Paper>
-              <Tabela data={generalTableData} />
-            </Paper>
-          </Grid>
+          <>
+            <Grid item xs={12} lg={6}>
+              <Paper>
+                <OperatorChatTable />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <Paper>
+                <Tabela data={generalTableData} />
+              </Paper>
+            </Grid>
+          </>
         )}
       </Grid>
     </Container>

@@ -1,7 +1,7 @@
 import React from 'react'
 /* eslint-disable */
 import { withStyles, makeStyles } from '@material-ui/core/styles'
-import { ArrowDownward, ArrowForwardIos } from '@material-ui/icons'
+import ChatIcon from '@material-ui/icons/Chat'
 import {
   Table,
   TableBody,
@@ -121,13 +121,7 @@ export default function CustomizedTables({
                   {formatDate(stats.createdAt)}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <Dialog
-                    id={stats.id}
-                    button={<ArrowForwardIos color="primary" />}
-                  />
-                </StyledTableCell>
-                <StyledTableCell align="center" style={{ cursor: 'pointer' }}>
-                  <ArrowDownward color="primary" />
+                  <Dialog id={stats.id} button={<ChatIcon color="primary" />} />
                 </StyledTableCell>
               </TableRow>
             )

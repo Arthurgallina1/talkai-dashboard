@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   Slide,
+  Grid,
   makeStyles
 } from '@material-ui/core'
 import { useEffect } from 'react'
@@ -52,9 +53,14 @@ export default function AlertDialogSlide({ id, button }) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Grid
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+        style={{ cursor: 'pointer' }}
+      >
         {button}
-      </Button>
+      </Grid>
       <Dialog
         open={open}
         TransitionComponent={Transition}
