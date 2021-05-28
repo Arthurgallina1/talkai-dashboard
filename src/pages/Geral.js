@@ -4,6 +4,7 @@ import { Container, Grid } from '@material-ui/core'
 import Loading from 'components/commom/Loading'
 import { getVisaoGeralData } from 'services/api'
 import StatTable from 'components/commom/StatTable'
+import Chart2d from 'components/commom/Charts/2D'
 
 export default function Geral() {
   const [generalTableData, setGeneralTableData] = useState({ stats: [] })
@@ -31,6 +32,7 @@ export default function Geral() {
         ) : (
           <>
             <Grid item xs={12} lg={12}>
+              <Chart2d />
               <StatTable
                 statData={generalTableData.stats}
                 title="Visão Geral"

@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import Title from 'components/commom/Title'
-import Chart2D from 'components/commom/Charts/2D'
+// import Chart2D from 'components/commom/Charts/2D'
 
 function Copyright() {
   return (
@@ -100,8 +100,8 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3} justify="center">
-            <Title>Dashboard mock</Title>
-            <Chart2D />
+            <Title>Dashboard</Title>
+            {/* <Chart2D /> */}
             {/* <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}></Paper>
             </Grid>
