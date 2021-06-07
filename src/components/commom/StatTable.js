@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 export default function StatTable({ title, statData }) {
   const classes = useStyles()
 
-  console.log('statData', statData)
   return (
     <Box mt={5}>
       <Box mb={2}>

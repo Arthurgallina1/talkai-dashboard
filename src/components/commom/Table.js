@@ -11,7 +11,8 @@ import {
   TableRow,
   Paper
 } from '@material-ui/core'
-import Dialog from './Dialog'
+import Dialog from '../chat/Dialog'
+import ChangeStatusDialog from '../chat/ChangeStatusDialog'
 import { formatDate } from 'utils/formatters'
 
 const StyledTableCell = withStyles((theme) => ({
@@ -38,42 +39,31 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       minWidth: 350
     }
-  },
-  iniciado: {
-    padding: 10,
-    borderRadius: 18,
-    color: 'white',
-    background: theme.palette.success.main
-  },
-  pausado: {
-    padding: 10,
-    borderRadius: 18,
-    color: 'white',
-    background: theme.palette.error.main
   }
 }))
 // function createData(id, clientPhone, label, createdAt) {
 //   return { id, clientPhone, label, createdAt }
 // }
 
-const Iniciado = () => {
-  const classes = useStyles()
-  return <div className={classes.iniciado}>Em andamento</div>
-}
-const Pausado = () => {
-  const classes = useStyles()
-  return <div className={classes.pausado}>Pausado</div>
-}
+// const Iniciado = () => {
+//   const classes = useStyles()
+//   return <ChangeStatusDialog />
+//   // return <div className={classes.iniciado}>Em andamento</div>
+// }
+// const Pausado = () => {
+//   const classes = useStyles()
+//   return <div className={classes.pausado}>Pausado</div>
+// }
 
-const formatStatusLabel = (label) => {
-  const labelObject = {
-    iniciado: <Iniciado />,
-    parado: <Pausado />
-  }
-  if (!labelObject[label]) return label
+// const formatStatusLabel = (label) => {
+//   const labelObject = {
+//     iniciado: <Iniciado />,
+//     parado: <Pausado />
+//   }
+//   if (!labelObject[label]) return label
 
-  return labelObject[label]
-}
+//   return labelObject[label]
+// }
 
 // const rows = [
 //   createData(2, '(49)12345-2322', getLabel('iniciado'), '2021-05-26'),
@@ -115,7 +105,8 @@ export default function CustomizedTables({
                   {stats.clientPhone}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {formatStatusLabel(stats.label)}
+                  {/* {formatStatusLabel(stats.label)} */}
+                  {<ChangeStatusDialog id={stats.id} status={stats.label} />}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   {formatDate(stats.createdAt)}

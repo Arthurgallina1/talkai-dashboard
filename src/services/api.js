@@ -35,6 +35,15 @@ export const getMessagesByChatId = async (chatId) => {
   }
 }
 
+export const updateChatById = async (chatId, label) => {
+  try {
+    const response = await api.patch(`/chats/${chatId}`, { label })
+    return { data: response.data.data, success: true }
+  } catch (err) {
+    throw new Error('Error on updating chat status')
+  }
+}
+
 export const getOperatorOverview = async (operatorId) => {
   try {
     const response = await api.get(`overview/operator/${operatorId}`)

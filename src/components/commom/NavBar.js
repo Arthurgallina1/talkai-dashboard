@@ -145,11 +145,11 @@ export default function NavBar() {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
+          {/* <IconButton color="inherit">
             <Badge badgeContent={1} color="secondary">
               <Notifications />
             </Badge>
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
       <Drawer
