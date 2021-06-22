@@ -29,6 +29,7 @@ import {
 } from '@material-ui/icons'
 import Logo from 'assets/logoPng.png'
 import history from 'services/history'
+import useAuth from 'hooks/useAuth'
 
 const drawerWidth = 240
 
@@ -111,6 +112,8 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar() {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
+  const { handleLogout } = useAuth()
+
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -145,6 +148,17 @@ export default function NavBar() {
           >
             Dashboard
           </Typography>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            onClick={handleLogout}
+            className={classes.title}
+          >
+            Logout
+          </Typography>
+
           {/* <IconButton color="inherit">
             <Badge badgeContent={1} color="secondary">
               <Notifications />

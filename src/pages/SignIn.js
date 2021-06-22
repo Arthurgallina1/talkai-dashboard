@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Copyright from 'components/commom/Copyright'
+import useAuth from 'hooks/useAuth'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,8 +25,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    width: '100%' // Fix IE 11 issue.
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
@@ -34,19 +34,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles()
+  const { handleLogin } = useAuth()
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+  const [error, setError] = useState(false)
 
   const handleInputChange = (e, fieldName) => {
     const { value } = e.target
     setFormData((prev) => ({ ...prev, [fieldName]: value }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(formData)
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault()
+      await handleLogin()
+      console.log(formData)
+    } catch (err) {
+      setError(true)
+    }
   }
 
   return (
@@ -59,9 +66,15 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Entrar
         </Typography>
+        {error && (
+          <Typography color="error" variant="subtitle1">
+            E-mail ou senha inválidos.
+          </Typography>
+        )}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             onChange={(e) => handleInputChange(e, 'email')}
+            error={error}
             variant="outlined"
             margin="normal"
             required

@@ -2,26 +2,25 @@ import React from 'react'
 import AuthLayout from 'pages/__layouts/auth'
 import DefaultLayout from 'pages/__layouts/default'
 import { Route, Redirect } from 'react-router-dom'
-import useAuth from 'hooks/useAuth'
+// import useAuth from 'hooks/useAuth'
+import { useAuthStore } from 'store'
 
 export default function RouteWrapper({
   component: Component,
   isPrivate,
   ...rest
 }) {
-  const [isAuthed] = useAuth()
+  const { authenticated } = useAuthStore()
 
-  console.log(isAuthed)
-
-  if (!isAuthed && isPrivate) {
+  if (!authenticated && isPrivate) {
     return <Redirect to="/sign-in" />
   }
   //Já está logado
-  if (isAuthed && !isPrivate) {
+  if (authenticated && !isPrivate) {
     return <Redirect to="/geral" />
   }
 
-  const Layout = isAuthed ? AuthLayout : DefaultLayout
+  const Layout = authenticated ? AuthLayout : DefaultLayout
   //Apenas retorna o componente
   return (
     // Render: função que recebe todas propriedades da tela.
