@@ -1,23 +1,22 @@
 import React from 'react'
 import AuthLayout from 'pages/__layouts/auth'
-/* eslint-disable */
-
 import { Route, Redirect } from 'react-router-dom'
+import useAuth from 'hooks/useAuth'
 
 export default function RouteWrapper({
   component: Component,
   isPrivate,
   ...rest
 }) {
-  //    const {signed} = store.getState().auth;
+  const [isAuthed] = useAuth()
 
-  //     if(!signed && isPrivate){
-  //         return <Redirect to="/" />;
-  //     }
-  //     //Já está logado
-  //     if(signed && !isPrivate){
-  //         return <Redirect to="/dashboard" />
-  //     }
+  if (!isAuthed && isPrivate) {
+    return <Redirect to="/" />
+  }
+  //Já está logado
+  if (isAuthed && !isPrivate) {
+    return <Redirect to="/geral" />
+  }
 
   const Layout = AuthLayout // signed ? DefaultLayout : AuthLayout
   //Apenas retorna o componente

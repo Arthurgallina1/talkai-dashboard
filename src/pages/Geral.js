@@ -15,7 +15,6 @@ export default function Geral() {
     const fetchData = async () => {
       try {
         const response = await getVisaoGeralData()
-        console.debug('data', response.data)
         setGeneralTableData(response.data)
         setLoading(false)
       } catch (err) {

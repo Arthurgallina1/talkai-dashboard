@@ -55,9 +55,7 @@ export default function Operadores() {
       alignItems="center"
       className={classes.container}
     >
-      <Title color="black" icon={<Person color="primary" />}>
-        Operadores
-      </Title>
+      <Title icon={<Person color="primary" />}>Operadores</Title>
       {loading ? (
         <Loading />
       ) : (

@@ -32,10 +32,10 @@ export default function OperatorCard({ operator, showLink = false }) {
           <Link to={`/operadores/${operator.id}`}>
             <Grid container justify="center" alignItems="center">
               <Button variant="contained" color="primary" onClick={() => {}}>
-                <Text variant="p" color="black" style={{ marginRight: 5 }}>
+                <Text variant="p" style={{ marginRight: 5 }}>
                   <strong>Ver Mais</strong>
                 </Text>
-                <ArrowForwardIos color="white" fontSize="small" />
+                <ArrowForwardIos fontSize="small" />
               </Button>
             </Grid>
           </Link>
