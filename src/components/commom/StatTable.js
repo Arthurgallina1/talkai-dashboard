@@ -37,7 +37,7 @@ export default function StatTable({ title, statData }) {
   return (
     <Box mt={5}>
       <Box mb={2}>
-        <Title color="black">
+        <Title>
           <strong>{title}</strong>
         </Title>
       </Box>

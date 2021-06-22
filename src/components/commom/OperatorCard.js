@@ -12,7 +12,7 @@ export default function OperatorCard({ operator, showLink = false }) {
     <Card>
       <Grid container direction="column" alignItems="center">
         <Avatar />
-        <Text variant="h6" classSelected="black" style={{ marginBottom: 10 }}>
+        <Text variant="h6" style={{ marginBottom: 10 }}>
           {operator.name}
         </Text>
         <Text variant="p">
