@@ -30,6 +30,7 @@ import {
 import Logo from 'assets/logoPng.png'
 import history from 'services/history'
 import useAuth from 'hooks/useAuth'
+import { useAuthStore } from 'store'
 
 const drawerWidth = 240
 
@@ -113,6 +114,12 @@ export default function NavBar() {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
   const { handleLogout } = useAuth()
+  const user = useAuthStore((state) => state.user)
+  const test = useAuthStore((state) => state.test)
+  const setTest = useAuthStore((state) => state.setTeste)
+
+  console.log('nav', user)
+  console.log('test', test)
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -139,6 +146,7 @@ export default function NavBar() {
           >
             <Menu />
           </IconButton>
+          <span onClick={setTest}>click teste</span>
           <Typography
             component="h1"
             variant="h6"
@@ -157,6 +165,16 @@ export default function NavBar() {
             className={classes.title}
           >
             Logout
+          </Typography>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            onClick={handleLogout}
+            className={classes.title}
+          >
+            {user?.username}
           </Typography>
 
           {/* <IconButton color="inherit">

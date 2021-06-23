@@ -1,42 +1,50 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
-import api from 'services/api'
+import strapiApi from 'services/strapiApi'
 import history from 'services/history'
 import { useAuthStore } from 'store'
 
 export default function useAuth() {
   // const [authenticated, setAuthenticated] = useState(false)
-  const { authenticated, setAuthenticated } = useAuthStore()
-  const [loading, setLoading] = useState(true)
+  const {
+    authenticated,
+    setTeste,
+    setAuthenticated,
+    setUser,
+    loading,
+    setLoading
+  } = useAuthStore()
 
   useEffect(() => {
     const token = localStorage.getItem('talk@token')
-
     if (token) {
-      console.log('fetched from localStorage')
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`
+      // console.log('fetched token', token)
+      strapiApi.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`
       setAuthenticated(true)
     }
 
     setLoading(false)
   }, [])
 
-  async function handleLogin() {
-    // const {
-    //   data: { token }
-    // } = await api.post('/authenticate', data)
-    const token = 123
+  async function handleLogin(data) {
+    const {
+      data: { jwt, user }
+    } = await strapiApi.post('/auth/local', data)
+
     console.log('login okay')
-    localStorage.setItem('talk@token', JSON.stringify(token))
-    api.defaults.headers.Authorization = `Bearer ${token}`
+    localStorage.setItem('talk@token', JSON.stringify(jwt))
+    strapiApi.defaults.headers.Authorization = `Bearer ${jwt}`
     setAuthenticated(true)
+    setUser(user)
+    setTeste()
+    console.debug('user', user)
     history.push('/geral')
   }
 
   function handleLogout() {
+    delete strapiApi.defaults.headers.common['Authorization']
     setAuthenticated(false)
     localStorage.removeItem('talk@token')
-    api.defaults.headers.Authorization = undefined
     history.push('/sign-in')
   }
 

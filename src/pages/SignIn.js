@@ -36,7 +36,7 @@ export default function SignIn() {
   const classes = useStyles()
   const { handleLogin } = useAuth()
   const [formData, setFormData] = useState({
-    email: '',
+    identifier: '',
     password: ''
   })
   const [error, setError] = useState(false)
@@ -49,8 +49,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
-      await handleLogin()
-      console.log(formData)
+      await handleLogin(formData)
     } catch (err) {
       setError(true)
     }
@@ -66,15 +65,17 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Entrar
         </Typography>
+
         {error && (
-          <Typography color="error" variant="subtitle1">
-            E-mail ou senha inválidos.
-          </Typography>
+          <Box mt={3}>
+            <Typography color="error" variant="subtitle1">
+              E-mail ou senha inválidos.
+            </Typography>
+          </Box>
         )}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
-            onChange={(e) => handleInputChange(e, 'email')}
-            error={error}
+            onChange={(e) => handleInputChange(e, 'identifier')}
             variant="outlined"
             margin="normal"
             required
@@ -84,7 +85,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            value={formData.email}
+            value={formData.identifier}
           />
           <TextField
             onChange={(e) => handleInputChange(e, 'password')}
